@@ -2,24 +2,33 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-  use HasFactory;
-  
-  protected $fillable = [
-    'body', 'user_id', 'post_id'
-  ];
+    use HasFactory;
 
-  public function post()
-  {
-    return $this->belongsTo(Post::class);
-  }
+    protected $fillable = [
+        'body', 'user_id', 'post_id'
+    ];
 
-  public function user()
-  {
-    return $this->belongsTo(User::class);
-  }
+	/**
+	 * The attributes that should be cast.
+	 *
+	 * @var array<string, string>
+	 */
+	protected $casts = [
+		'created_at' => 'datetime:M d, Y',
+	];
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

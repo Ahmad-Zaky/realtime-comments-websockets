@@ -1,6 +1,6 @@
-@extends('layouts.app')
-
-@section('content')
+<x-app-layout>
+  <x-slot name="header"></x-slot>
+  
   <div class="container">
     <h1>New Post</h1>
     <hr />
@@ -10,18 +10,19 @@
         <label for="post_title">Title</label>
         <input type="text" class="form-control" id="post_title" name="title" placeholder="Title" value="{{ old('title') }}">
       </div>
-
+  
       <div class="form-group">
         <label for="post_content">Post Content</label>
         <textarea class="form-control" rows="8" id="post_content" name="content" placeholder="Write something amazing..." value="{{ old('content') }}"></textarea>
       </div>
-
+  
       <div class="form-group">
         <label><input type="checkbox" name="published" style="margin-right: 15px;">Published</label>
       </div>
-
+  
       <button type="submit" class="btn btn-primary btn-lg">Save Post</button>
     </form>
-
+  
   </div>
-@endsection
+
+</x-app-layout>
