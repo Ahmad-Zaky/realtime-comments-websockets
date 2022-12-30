@@ -87,9 +87,18 @@
             });
           },
           listen() {
-            Echo.channel(`post.${this.post.id}`)
-              .listen("NewComment", (comment) => {
-                if (! this.user || comment.user.id !== this.user.id) {
+            // Public Channel
+            // Echo.channel(`post.${this.post.id}`)
+            //   .listen("NewComment", (comment) => {
+            //     if (! this.user || comment.user.id !== this.user.id) {
+            //       this.comments.unshift(comment);
+            //     }
+            //   });
+
+            // Private Channel
+            Echo.private(`post.${this.post.id}`)
+              .listen("NewPrivateComment", (comment) => {
+                if (! this.user || comment.user.id !== this.user?.id) {
                   this.comments.unshift(comment);
                 }
               });
