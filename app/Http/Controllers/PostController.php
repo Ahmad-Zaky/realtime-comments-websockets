@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('auth', ['except' => ['show']]);
+      $this->middleware('auth', ['except' => ['index', 'show']]);
     }
 
     /**
@@ -20,7 +20,7 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::paginate(25);
+      $posts = Post::filter()->paginate(25);
       return view('posts.index')->withPosts($posts);
     }
 
@@ -66,7 +66,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-      $post = Post::findOrFail($id);
+      if (! $post = Post::filter()->where("id", $id)->first()) {
+        abort(404);
+      }
+
       return view('posts.show')->withPost($post);
     }
 

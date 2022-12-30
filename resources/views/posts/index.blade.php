@@ -4,10 +4,13 @@
         <div class="col-md-8">
           <h1>All Posts</h1>
         </div>
+        
+        @auth
+          <div class="col-md-4">
+            <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right" style="margin-top:15px;">Create New Post</a>
+          </div>
+        @endauth
 
-        <div class="col-md-4">
-          <a href="{{ route('posts.create') }}" class="btn btn-primary pull-right" style="margin-top:15px;">Create New Post</a>
-        </div>
       </div>
       <hr />
       <table class="table">
@@ -16,7 +19,7 @@
             <th>Id</th>
             <th>Title</th>
             <th>Published</th>
-            <th>Actions</th>
+            @auth <th>Actions</th> @endauth
           </tr>
         </thead>
 
@@ -30,7 +33,7 @@
                 </a>
               </td>
               <td>{{ $post->published ? "Published" : "Draft" }}</td>
-              <td><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-default">Edit</a></td>
+              @auth <td><a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-default">Edit</a></td> @endauth
             </tr>
           @endforeach
         </tbody>

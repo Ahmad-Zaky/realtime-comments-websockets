@@ -25,7 +25,9 @@
 
     </head>
     <body>
-        <div id="app">
+        <div id="app">            
+            @include('layouts.navigation-guest')
+
             <div class="font-sans text-gray-900 antialiased pt-4">
                 {{ $slot }}
             </div>

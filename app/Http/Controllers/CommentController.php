@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewComment;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
@@ -45,6 +46,8 @@ class CommentController extends Controller
 
         $comment = Comment::with("user")->findOrFail($comment->id);
         
+        broadcast(new NewComment($comment))->toOthers();
+
         return response()->json($comment);
     }
 

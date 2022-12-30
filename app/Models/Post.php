@@ -22,4 +22,11 @@ class Post extends Model
 	{
 		return $this->hasMany(Comment::class);
 	}
+
+	public function scopeFilter($query)
+	{
+		return $query->when(auth()->guest() ?? false, function ($q) {
+			$q->where("published", true);
+		});
+	}
 }
