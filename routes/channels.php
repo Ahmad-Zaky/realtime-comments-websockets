@@ -24,10 +24,6 @@ Broadcast::channel('post.{id}', function ($user, $id) {
     // return $user->id === optional(\App\Models\Post::find($id))->id;
 });
 
-Broadcast::channel('private.chat.{id}', function ($user, $id) {
-    return true;
-});
-
 Broadcast::channel('presence.chat.{id}', function ($user, $id) {
     return [
         'id' => $user->id,

@@ -49,19 +49,6 @@
             onTypingMessage();
 
             /**
-             * Private WS Connection 
-             */
-            // const channel = Echo.private(`private.chat.1`);
-
-            // channel.subscribed(() => {
-            //     console.log("Subscribed");
-            // }).listen(".new-message", (event) => {
-            //     console.log(event);
-            //     addChatMessage(event.message, event.user.name);
-            // });
-
-
-            /**
              * Presence WS Connection 
              */
             const channel = Echo.join(`presence.chat.1`);
