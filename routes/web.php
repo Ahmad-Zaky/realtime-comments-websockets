@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\NewMessage;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/chat', function () {
+    return view('chat');
+})->middleware(['auth'])->name('chat');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
@@ -26,3 +32,9 @@ require __DIR__.'/auth.php';
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/posts', 'PostController');
+
+Route::post('/chat-message', function (Request $request){
+    event(new NewMessage($request->message, auth()->user()));
+    
+    return null;
+});

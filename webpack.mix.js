@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,19 +13,27 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
+    .css('resources/css/helper.css', 'public/css')
+    .css('resources/css/chat.css', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         require('tailwindcss'),
         require('autoprefixer'),
     ])
     .sass('resources/sass/app.scss', 'public/css');
 
-const webpack = require('webpack');
-
-mix.webpackConfig ({
+mix.webpackConfig({
     plugins: [
         new webpack.DefinePlugin({
             __VUE_OPTIONS_API__: true,
             __VUE_PROD_DEVTOOLS__: true,
         }),
     ],
-})
+});
+
+// Config Hot reload development server
+mix.options({
+    hmrOptions: {
+        host: 'localhost',
+        port: 8080,
+    }
+});
