@@ -17,13 +17,22 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('private.chat.{id}', function ($user, $id) {
-    return true;
-});
-
 Broadcast::channel('post.{id}', function ($user, $id) {
     return true;
     
     // Only Author of the Post can connect to the channel
-    // return $user->id === optional(\App\Models\Post::find($id))->user_id;
+    // return $user->id === optional(\App\Models\Post::find($id))->id;
+});
+
+Broadcast::channel('private.chat.{id}', function ($user, $id) {
+    return true;
+});
+
+Broadcast::channel('presence.chat.{id}', function ($user, $id) {
+    return [
+        'id' => $user->id,
+        'name' => $user->name,
+        'email' => $user->email,
+        'avatar' => $user->avatar ?? "http://placeimg.com/50/50",
+    ];
 });
