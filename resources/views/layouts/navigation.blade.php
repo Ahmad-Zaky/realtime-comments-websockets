@@ -16,12 +16,12 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                        {{ __('Posts') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
                         {{ __('Chat') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                        {{ __('Posts') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -75,12 +75,12 @@
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
             
-            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
-            
             <x-responsive-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
                 {{ __('Chat') }}
+            </x-responsive-nav-link>
+            
+            <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
+                {{ __('Posts') }}
             </x-responsive-nav-link>
         </div>
 

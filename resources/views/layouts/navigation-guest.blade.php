@@ -12,6 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    
+                    @auth
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-nav-link>
+
+                        <x-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
+                            {{ __('Chat') }}
+                        </x-nav-link>
+                    @endauth
 
                     <x-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                         {{ __('Posts') }}
@@ -34,6 +44,18 @@
     <!-- Responsive Navigation Menu -->
     <div class="block">
         <div class="pt-2 pb-3 space-y-1">
+            
+            @auth
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-responsive-nav-link>
+                
+
+                <x-responsive-nav-link :href="route('chat')" :active="request()->routeIs('chat')">
+                    {{ __('Chat') }}
+                </x-responsive-nav-link>
+            @endauth
+            
             <x-responsive-nav-link :href="route('posts.index')" :active="request()->routeIs('posts.index')">
                 {{ __('Posts') }}
             </x-responsive-nav-link>
