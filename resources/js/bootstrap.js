@@ -51,9 +51,10 @@ window.Echo = new Echo({
     broadcaster: 'pusher',
     key: process.env.MIX_PUSHER_APP_KEY,
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: false,
-    encrypted: false,
+    forceTLS: process.env.MIX_PUSHER_SCHEME === 'https',
+    encrypted: process.env.MIX_PUSHER_SCHEME === 'https',
     wsHost: window.location.hostname,
-    wsPort: 6001,
+    wsPort: process.env.MIX_PUSHER_PORT,
+    wssPort: process.env.MIX_PUSHER_SECURED_PORT,
     enabledTransports: ['ws', 'wss']
 });
