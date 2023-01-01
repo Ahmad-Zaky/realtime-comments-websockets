@@ -45,6 +45,7 @@ if (token) {
 import Echo from 'laravel-echo';
 
 window.Pusher = require('pusher-js');
+window.appKey = process.env.MIX_PUSHER_APP_KEY;
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
@@ -54,5 +55,5 @@ window.Echo = new Echo({
     encrypted: false,
     wsHost: window.location.hostname,
     wsPort: 6001,
-    enabledTransports: ['ws', 'wss'],
+    enabledTransports: ['ws', 'wss']
 });

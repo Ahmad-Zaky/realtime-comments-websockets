@@ -3,6 +3,8 @@
 use App\Events\NewMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use BeyondCode\LaravelWebSockets\Facades\WebSocketsRouter;
+use App\Websockets\SocketHandler\UpdatePostSocketHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,3 +40,5 @@ Route::post('/chat-message', function (Request $request){
     
     return null;
 });
+
+WebSocketsRouter::webSocket('/socket/update-post', UpdatePostSocketHandler::class);

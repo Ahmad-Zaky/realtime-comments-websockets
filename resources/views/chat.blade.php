@@ -44,34 +44,33 @@
             const avatars = document.getElementById('avatars');
             const spanTyping = document.getElementById('span-typing');
             var onlineUsers = [];
-
-            onSubmit();
-            onTypingMessage();
-
+            
             /**
              * Presence WS Connection 
              */
+            onSubmit();
+            onTypingMessage();
+
             const channel = Echo.join(`presence.chat.1`);
 
             channel.here((users) => {
                 onlineUsers = [...users]
                 renderAvatars();
-                console.log(users);
-                console.log("Subscribed");
+                console.log("Subscribed Users", users);
             })
             .joining((user) => {
                 onlineUsers.push(user);
                 renderAvatars();
                 addChatMessage(user.name, "has joined the room !");
 
-                console.log(user, "Joined");
+                console.log("Joined User", user);
             })
             .leaving((user) => {
                 onlineUsers = onlineUsers.filter((onlineUser) => onlineUser.id !== user.id);
                 renderAvatars();
                 addChatMessage(user.name, "has left the room.", "grey");
 
-                console.log(user, "Left");
+                console.log("Left User", user);
             })
             .listen(".new-message", (event) => {
                 console.log(event);
@@ -167,6 +166,34 @@
             function stopTyping(message) {
                 spanTyping.textContent = "";
             }
+
+            /**
+             * RPC Wehsockets Connection Pattern
+             * using raw websocket connection
+             */
+            // updatePost();
+
+            // function updatePost() {
+            //     const socket = new WebSocket(`ws://${window.location.hostname}:6001/socket/update-post?appKey=${window.appKey}`);
+
+            //     socket.onopen = function (event) {
+            //         console.log("On Open !");
+
+            //         socket.send(JSON.stringify({
+            //             id: 1,
+            //             payload: {
+            //                 title: "New Title"
+            //             }
+            //         }));
+
+            //         socket.onmessage = function (event) {
+            //             console.log("On Message!");
+            //             const data = JSON.parse(event.data);
+            //             console.log(data);
+            //         }
+            //     }
+            // }
+
         </script>
     @endsection
 </x-app-layout>
