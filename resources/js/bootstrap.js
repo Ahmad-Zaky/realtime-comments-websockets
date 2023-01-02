@@ -53,6 +53,7 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     forceTLS: process.env.MIX_PUSHER_SCHEME === 'https',
     encrypted: process.env.MIX_PUSHER_SCHEME === 'https',
+    disableStats: process.env.MIX_PUSHER_SCHEME === 'https',
     wsHost: window.location.hostname,
     wsPort: process.env.MIX_PUSHER_PORT,
     wssPort: process.env.MIX_PUSHER_SECURED_PORT,
