@@ -133,3 +133,11 @@ RUN echo "mfactory() {\n"\
 >> ~/.bashrc
 
 
+
+###########################################
+# Cron:
+###########################################
+
+USER root
+COPY ./crontab /etc/cron.d
+RUN chmod -R 644 /etc/cron.d
